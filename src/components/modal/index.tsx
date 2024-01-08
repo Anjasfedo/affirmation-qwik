@@ -30,7 +30,7 @@ export default component$(() => {
             [state.affirmation, author.value],
           ];
 
-          data.openModal = false
+          data.openModal = false;
         }}
       >
         Save
