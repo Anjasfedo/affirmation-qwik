@@ -13,7 +13,7 @@ export const MyContext = createContextId("affirmation-qwik");
 export default component$(() => {
   const state = useStore({
     affirmations: [],
-    openModal: true,
+    openModal: false,
   });
 
   useContextProvider(MyContext, state);
