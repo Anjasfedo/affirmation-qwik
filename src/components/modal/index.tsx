@@ -36,6 +36,11 @@ export default component$(() => {
             [state.affirmation, author.value],
           ];
 
+          localStorage.setItem(
+            "affirmation-qwik",
+            JSON.stringify({ affirmations: data.affirmations }),
+          );
+
           data.openModal = false;
         }}
         class="ml-auto rounded bg-sky-400 px-4 py-2 text-sm duration-200 hover:bg-sky-600"
@@ -43,7 +48,7 @@ export default component$(() => {
         Save
       </button>
       <div class="h-[1px] bg-sky-300 opacity-50"></div>
-      <div class="flex flex-col gap-1">
+      <div class="flex flex-col gap-1 overflow-scroll">
         {data.affirmations.map((item, index) => {
           return (
             <div

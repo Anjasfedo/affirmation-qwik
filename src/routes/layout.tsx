@@ -4,6 +4,7 @@ import {
   Slot,
   useContextProvider,
   useStore,
+  useVisibleTask$,
 } from "@builder.io/qwik";
 import Modal from "~/components/modal";
 
@@ -17,6 +18,14 @@ export default component$(() => {
 
   useContextProvider(MyContext, state);
 
+  useVisibleTask$(() => {
+    if (localStorage.getItem("affirmation-qwik")) {
+      state.affirmations = JSON.parse(
+        localStorage.getItem("affirmation-qwik"),
+      ).affirmations;
+    }
+  });
+
   return (
     <>
       {state.openModal && <Modal />}
@@ -28,7 +37,7 @@ export default component$(() => {
           class="fa-solid fa-plus cursor-pointer"
         ></i>
       </header>
-      <main class="mx-auto flex w-full max-w-[1200px] flex-1 flex-col">
+      <main class="mx-auto flex w-full max-w-[1200px] flex-1 flex-col items-center justify-center gap-2">
         <Slot />
       </main>
       <footer></footer>
