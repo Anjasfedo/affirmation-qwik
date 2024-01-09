@@ -19,7 +19,7 @@ export default component$(() => {
       } else {
         displayIndex.value = 0;
       }
-    }, 30000);
+    }, 20000);
 
     cleanup(() => clearInterval(interval));
   });

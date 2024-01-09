@@ -11,20 +11,25 @@ export default component$(() => {
 
   return (
     <div class="fixed left-0 top-0 flex h-screen w-screen flex-col gap-2 bg-gray-900 p-4">
-      <p class="text-center text-2xl font-semibold">Add an Affirmation</p>
+      <div class="flex flex-col justify-center relative mb-2">
+        <p class="text-center text-2xl font-semibold">Add an Affirmation</p>
+        <i onClick$={() => {
+          data.openModal = false;
+        }} class="fa fa-times absolute right-0 p-2 cursor-pointer"></i>
+      </div>
       <input
         type="text"
         placeholder="Enter affirmation"
         onInput$={(e) => {
           state.affirmation = e.target.value;
         }}
-        class="bg=transparent bordeer-sky-800 rounded border text-sm outline-none duration-200 focus:border-sky-400 focus:outline-none sm:text-base"
+        class="bordeer-sky-800 rounded border bg-transparent text-sm outline-none duration-200 focus:border-sky-400 focus:outline-none sm:text-base"
       />
       <input
         type="text"
         bind:value={author}
         placeholder="Author"
-        class="bg=transparent bordeer-sky-800 rounded border text-sm outline-none duration-200 focus:border-sky-400 focus:outline-none sm:text-base"
+        class="bordeer-sky-800 rounded border bg-transparent text-sm outline-none duration-200 focus:border-sky-400 focus:outline-none sm:text-base"
       />
       <button
         onClick$={() => {
@@ -68,6 +73,13 @@ export default component$(() => {
                       return elementIndex !== index;
                     },
                   );
+
+                  localStorage.setItem(
+                    "affirmation-qwik",
+                    JSON.stringify({ affirmations: data.affirmations }),
+                  );
+
+                  data.openModal = false;
                 }}
                 class="fa-solid fa-minus cursor-pointer duration-200 hover:scale-125"
               ></i>
